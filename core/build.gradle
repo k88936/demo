@@ -13,7 +13,13 @@ dependencies {
   api "com.kotcrab.vis:vis-ui:$visUiVersion"
   api "com.sudoplay.joise:joise:$joiseVersion"
   api "net.onedaybeard.artemis:artemis-odb:$artemisOdbVersion"
+  api "com.badlogicgames.gdx:gdx-box2d:$gdx_box2d_Version"
+  api "com.badlogicgames.gdx:gdx-box2d-utils:$gdx_box2d_Version"
 
+  implementation "com.badlogicgames.box2dlights:box2dlights:$box2dlightsVersion"
+  testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.1"
+  testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.1"
+  testImplementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdx_box2d_Version:natives-desktop"
   if(enableGraalNative == 'true') {
     implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"
   }

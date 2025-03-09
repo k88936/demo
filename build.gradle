@@ -9,15 +9,19 @@ buildscript {
     maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
   }
   dependencies {
-
+    classpath "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
 
   }
 }
+
 
 allprojects {
   apply plugin: 'eclipse'
   apply plugin: 'idea'
 
+  configurations.configureEach {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+  }
   // This allows you to "Build and run using IntelliJ IDEA", an option in IDEA's Settings.
   idea {
     module {
@@ -64,6 +68,27 @@ subprojects {
     maven { url 'https://s01.oss.sonatype.org' }
     // You may want to remove the following line if you have errors downloading dependencies.
     mavenLocal()
+    maven {
+      url = "https://maven.pkg.github.com/k88936/box2dlights"
+      credentials {
+        username = 'k88936'
+        password = 'ghp_' + 'wFUC3mQHU8OqQtjcjfRWwwcpC4wiR54cd3FV'
+      }
+    }
+    maven {
+      url = "https://maven.pkg.github.com/k88936/gdx-box2d"
+      credentials {
+        username = 'k88936'
+        password = 'ghp_' + 'wFUC3mQHU8OqQtjcjfRWwwcpC4wiR54cd3FV'
+      }
+    }
+    maven {
+      url = "https://maven.pkg.github.com/k88936/gdx-vfx"
+      credentials {
+        username = 'k88936'
+        password = 'ghp_' + 'wFUC3mQHU8OqQtjcjfRWwwcpC4wiR54cd3FV'
+      }
+    }
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
     maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
     maven { url 'https://jitpack.io' }
