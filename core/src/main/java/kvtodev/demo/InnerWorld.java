@@ -13,7 +13,6 @@ import com.kotcrab.vis.ui.widget.VisImage;
 public class InnerWorld implements Screen {
     final Stage world = new Stage(new ExtendViewport(10, 10));
     final Stage ui = new Stage(new FitViewport(1920, 1080));
-    final Texture dialog_image = new Texture("dialog_window.png");
     private final Game game;
 
     public InnerWorld(Game game) {
@@ -35,8 +34,9 @@ public class InnerWorld implements Screen {
 //        };
 //        ui.addActor(actor);
 
+        final Texture dialog_image = new Texture("background.png");
         VisImage visImage = new VisImage(dialog_image);
-        visImage.setSize(1920, 1080 * 0.3f);
+        visImage.setSize(1920, 1080);
         visImage.setPosition(0, 0);
         ui.addActor(visImage);
 
