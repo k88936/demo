@@ -10,7 +10,7 @@ public class Main extends Game {
     @Override
     public void create() {
         VisUI.load();
-        setScreen(new te(this));
+        setScreen(new InnerWorld(this));
     }
 
     @Override

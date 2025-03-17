@@ -16,20 +16,12 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.crashinvaders.vfx.VfxManager;
 import com.crashinvaders.vfx.effects.*;
 import com.kotcrab.vis.ui.widget.VisWindow;
-import kvtodev.easing.Animator;
-import kvtodev.easing.LinkedAnimator;
-import kvtodev.easing.bounce.BounceEaseIn;
-import kvtodev.easing.cubic.CubicEaseIn;
-import kvtodev.easing.linear.Linear;
-
-import javax.sound.sampled.Line;
 
 public class te extends InputAdapter implements Screen {
 
     Stage ui = new Stage();
 
     private final Game game;
-    FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/noto.ttf"));
     BitmapFont font;
     VfxManager vfxManager;
     float time = 0;
@@ -46,8 +38,9 @@ public class te extends InputAdapter implements Screen {
 
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.characters += "鉴于对人类家庭所有成员的固有尊严及其平等的和不移的权利的承认,乃是世界自由、正义与和平的基础";
-        font = generator.generateFont(parameter);
-        generator.dispose();
+        FreeTypeFontGenerator freeTypeFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/noto.ttf"));
+        font = freeTypeFontGenerator.generateFont(parameter);
+        freeTypeFontGenerator.dispose();
 
         Label test = new Label("test", new Label.LabelStyle(font, Color.WHITE));
         test.setPosition(1000, 500);
@@ -60,32 +53,31 @@ public class te extends InputAdapter implements Screen {
         vfxManager.addEffect(new OldTvEffect());
         vfxManager.addEffect(new FilmGrainEffect());
         vfxManager.addEffect(new CrtEffect(CrtEffect.LineStyle.HORIZONTAL_HARD, 1.3f, 0.5f));
-        vfxManager.addEffect(new WaterDistortionEffect(1f, 1f));
+        vfxManager.addEffect(new WaterDistortionEffect(0.2f, 1f));
         effect = new DarkenVignettingEffect(false);
         vfxManager.addEffect(effect);
 //        vfxManager.addEffect(new ChromaticAberrationEffect(3));
 
 
 //        ani = new LinkedAnimator(0).add(new BounceEaseOut(5, 3f)).add(new CircEaseOut(3, 4f)).add(new CubicEaseIn(3, 10));
-        ani = new LinkedAnimator(1).add(new Linear(6, 3f)).add(new CubicEaseIn(5,  10f));
 
         Gdx.input.setInputProcessor(ui
         );
     }
 
-    Animator ani;
 
     DarkenVignettingEffect effect;
     float intensity = 0;
 
     @Override
     public void render(float deltaTime) {
-        float calculate = ani.getFloat(time);
-        System.out.println(calculate);
-        effect.setIntensity(calculate);
-        time += Gdx.graphics.getDeltaTime();
-        vfxManager.update(deltaTime);
-//        if (time > 6) {
+//        float calculate = ani.getFloat(time);
+//        effect.setIntensity(calculate);
+//        time += Gdx.graphics.getDeltaTime();
+//        vfxManager.update(deltaTime);
+//        boolean overOne = ani2.getOverOne(time);
+//        System.out.println(time+ " : " +ani2.getFloat(time));
+//        if (overOne) {
 //            vfxManager.update(1.5f);
 //        } else {
 //            vfxManager.update(0.005f);

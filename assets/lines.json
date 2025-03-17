@@ -1,0 +1,23 @@
+[
+  {
+    "scene": "java is jvav",
+    "lines": [
+      {
+        "role": "Alice",
+        "pos": "left",
+        "text": "你的头上{SLOW}怎么{SHAKE}尖尖的"
+      },
+      {
+        "role": "Bob",
+        "pos": "right",
+        "text": "// This is another {EASE} comment"
+      },
+      {
+        "role": "Alice",
+        "pos": "left",
+        "text": "// This is a {BLINK} 资本家可干死我了 {RESET} third comment"
+      }
+    ],
+    "background": "lights.png"
+  }
+]
