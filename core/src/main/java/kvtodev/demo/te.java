@@ -36,11 +36,6 @@ public class te extends InputAdapter implements Screen {
     public te(Game game) {
         this.game = game;
 
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.characters += "鉴于对人类家庭所有成员的固有尊严及其平等的和不移的权利的承认,乃是世界自由、正义与和平的基础";
-        FreeTypeFontGenerator freeTypeFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/noto.ttf"));
-        font = freeTypeFontGenerator.generateFont(parameter);
-        freeTypeFontGenerator.dispose();
 
         Label test = new Label("test", new Label.LabelStyle(font, Color.WHITE));
         test.setPosition(1000, 500);

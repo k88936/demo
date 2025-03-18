@@ -1,25 +1,40 @@
 package kvtodev.demo;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.scenes.scene2d.*;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.github.tommyettinger.textra.Font;
+import com.github.tommyettinger.textra.TypingLabel;
 
-public class DialogUI extends Group {
+public class DialogUI extends Table {
 
 
-    private boolean continueDialog= false;
+    Image cardA = new Image();
+    Image cardB = new Image();
+
+
+
+    static final float[] d_x  ={300,200,100};
+    static final float[] d_y  ={-300,-200,-100};
+    static final float[] d_a  ={-0.5f,-0.25f ,-0.1f};
+    static final float count_step = 4;
+
+    static class OneTalk extends Table {
+        TypingLabel label = new TypingLabel();
+        {
+            var game= MyGame.getInstance();
+            label.setFont(new Font(game.font1));
+            label.setTextSpeed(0.01f);
+//            label.setPosition();
+            addActor(label);
+        }
+    }
     DialogUI(){
         super();
-        addListener( new InputListener(){
-            @Override
-            public boolean keyUp(InputEvent event, int keycode) {
-                continueDialog = true;
-                return false;
-            }
-        });
-
-
+        addActor(cardA);
+        addActor(cardB);
     }
+
+
 
 }

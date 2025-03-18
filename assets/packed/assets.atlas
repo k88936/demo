@@ -1,0 +1,27 @@
+
+assets.png
+size: 4096, 4096
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+test_background
+  rotate: false
+  xy: 2, 2530
+  size: 2757, 1560
+  orig: 2757, 1560
+  offset: 0, 0
+  index: -1
+test_display
+  rotate: false
+  xy: 2, 1534
+  size: 1969, 994
+  orig: 1969, 994
+  offset: 0, 0
+  index: -1
+test_girl
+  rotate: false
+  xy: 2, 2
+  size: 1342, 1530
+  orig: 1342, 1530
+  offset: 0, 0
+  index: -1
