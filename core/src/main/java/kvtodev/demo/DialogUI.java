@@ -13,28 +13,32 @@ public class DialogUI extends Table {
     Image cardB = new Image();
 
 
-
-    static final float[] d_x  ={300,200,100};
-    static final float[] d_y  ={-300,-200,-100};
-    static final float[] d_a  ={-0.5f,-0.25f ,-0.1f};
+    static final float[] d_x = {300, 200, 100};
+    static final float[] d_y = {-300, -200, -100};
+    static final float[] d_a = {-0.5f, -0.25f, -0.1f};
     static final float count_step = 4;
 
     static class OneTalk extends Table {
         TypingLabel label = new TypingLabel();
+
         {
-            var game= MyGame.getInstance();
+            var game = MyGame.getInstance();
             label.setFont(new Font(game.font1));
             label.setTextSpeed(0.01f);
 //            label.setPosition();
             addActor(label);
         }
+
+        public void text(String text) {
+            label.restart(text);
+        }
     }
-    DialogUI(){
+
+    DialogUI() {
         super();
         addActor(cardA);
         addActor(cardB);
     }
-
 
 
 }

@@ -2,18 +2,17 @@ package kvtodev.demo;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.box2d.Box2dPlus;
 import com.badlogic.gdx.box2d.structs.b2Hull;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.ObjectMap;
 
 import java.util.Arrays;
@@ -57,7 +56,7 @@ public class Resources {
 //    public b2Hull getHull(String name) {
 //        return polygonVerticesData.get(name);
 //    }
-    public Table configureTable(Table table, String name) {
+    public Table configure(Table table, String name) {
         JsonValue dimension = dimensions.get(name);
         table.setSize(dimension.getFloat("width"), dimension.getFloat("height"));
         table.setPosition(dimension.getFloat("x"), dimension.getFloat("y"));
@@ -65,7 +64,7 @@ public class Resources {
         return table;
     }
 
-    public Image configureImage(Image image, String name) {
+    public Image configure(Image image, String name) {
         image.setDrawable(new TextureRegionDrawable(getTexureRegion(name)));
         JsonValue dimension = dimensions.get(name);
         image.setSize(dimension.getFloat("width"), dimension.getFloat("height"));
@@ -73,12 +72,20 @@ public class Resources {
         return image;
     }
 
-    public AnimationImage configureAnimationImage(AnimationImage image, String name) {
+    public Image configureAnimation(Image image, String name) {
         JsonValue dimension = dimensions.get(name);
         Animation<TextureRegionDrawable> animation = new Animation<>(dimension.getFloat("speed"), Arrays.stream(atlas.findRegions(name).items).map(TextureRegionDrawable::new).toArray(TextureRegionDrawable[]::new));
         image.setSize(dimension.getFloat("width"), dimension.getFloat("height"));
         image.setPosition(dimension.getFloat("x"), dimension.getFloat("y"));
-        image.setAnimation(animation);
+        image.addAction(new Action() {
+            float time = 0;
+            @Override
+            public boolean act(float delta) {
+                image.setDrawable(animation.getKeyFrame(time, true));
+                time += delta;
+                return false;
+            }
+        });
         return image;
     }
 }

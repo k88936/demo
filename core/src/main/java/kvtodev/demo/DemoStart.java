@@ -29,7 +29,7 @@ public class DemoStart extends InputAdapter implements Screen {
         {
             Image background = new Image();
             var game = MyGame.getInstance();
-            game.resources.configureImage(background, "test_background");
+            game.resources.configure(background, "test_background");
             addActor(background);
             Image display = new Image() {
                 final VfxManager vfxManager = new VfxManager(Pixmap.Format.RGBA8888);
@@ -68,10 +68,10 @@ public class DemoStart extends InputAdapter implements Screen {
                     batch.begin();
                 }
             };
-            game.resources.configureImage(display, "test_display");
+            game.resources.configure(display, "test_display");
             addActor(display);
             Image girl = new Image();
-            game.resources.configureImage(girl, "test_girl");
+            game.resources.configure(girl, "test_girl");
             addActor(girl);
             OrthographicCamera camera = (OrthographicCamera) getCamera();
             camera.position.set(Config.WIDTH / 4, Config.WIDTH / 4, 0);
